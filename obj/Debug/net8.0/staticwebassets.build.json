@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "O8jfN0cjC8o6MllO7Es8z6foB05TE9VePsULGEVZJL8=",
+  "Source": "NehuenOrganico",
+  "BasePath": "_content/NehuenOrganico",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "NehuenOrganico\\wwwroot",
+      "Source": "NehuenOrganico",
+      "ContentRoot": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\wwwroot\\",
+      "BasePath": "_content/NehuenOrganico",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\wwwroot\\css\\site.css",
+      "SourceId": "NehuenOrganico",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\wwwroot\\",
+      "BasePath": "_content/NehuenOrganico",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\wwwroot\\css\\styles.css",
+      "SourceId": "NehuenOrganico",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\wwwroot\\",
+      "BasePath": "_content/NehuenOrganico",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+@NehuenOrganico_HostAddress = https://localhost:7106
+
+GET {{NehuenOrganico_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{NehuenOrganico_HostAddress}}/weatherforecast
+
+###

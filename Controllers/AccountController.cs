@@ -48,6 +48,7 @@ namespace NehuenOrganico.Controllers
                     Name = model.Name,
                     UserName = model.Email,
                     Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
                     Address = model.Address,
 
                 };

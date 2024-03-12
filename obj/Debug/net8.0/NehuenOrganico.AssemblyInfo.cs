@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NehuenOrganico")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e499c67e46a050cec33e4a0e350c21ab2b1fa564")]
 [assembly: System.Reflection.AssemblyProductAttribute("NehuenOrganico")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NehuenOrganico")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using NehuenOrganico.Data;
 using NehuenOrganico.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,18 +42,21 @@ namespace NehuenOrganico.Repositories
             return null;
         }
 
-        public static void UpdateProduct(int productId, Product product)
+        public static void UpdateProduct(Product updatedProduct)
         {
-            if (productId != product.ProductId) return;
-
-            var productToUpdate = _products.FirstOrDefault(x => x.ProductId == productId);
-            if (productToUpdate != null)
+            using (var dbContext = new AppDbContext())
             {
-                productToUpdate.Name = product.Name;
-                productToUpdate.Category = product.Category;
-                productToUpdate.Description = product.Description;
-                productToUpdate.Price = product.Price;
-                productToUpdate.ImageUrl = product.ImageUrl;
+                var existingProduct = dbContext.Products.FirstOrDefault(p => p.ProductId == updatedProduct.ProductId);
+                if (existingProduct != null)
+                {
+                    existingProduct.Name = updatedProduct.Name;
+                    existingProduct.Category = updatedProduct.Category;
+                    existingProduct.Description = updatedProduct.Description;
+                    existingProduct.Price = updatedProduct.Price;
+                    existingProduct.ImageUrl = updatedProduct.ImageUrl;
+
+                    dbContext.SaveChanges();
+                }
             }
         }
 

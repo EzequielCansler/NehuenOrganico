@@ -18,6 +18,9 @@ namespace NehuenOrganico.ViewModels
         [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set; }
 
+        [DataType(DataType.PhoneNumber)]
+        public string? PhoneNumber { get; set; }
+
         public string? Address { get; set; }
 
 

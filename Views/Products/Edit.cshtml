@@ -4,3 +4,64 @@
     ViewData["Title"] = "Editar";
 }
 
+<div>
+    
+<form method="post" asp-controller="products" asp-action="edit" class="flex items-center justify-center mt-4">
+    <input type="hidden" asp-for="ProductId"/>
+    <div class="space-y-12">
+            <div class="border-b border-gray-900/10 pb-12">
+               
+            <h2 class="text-base font-semibold leading-7 text-gray-900">@Model.Name</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">@Model.Category</p>
+
+            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                    <label asp-for="Name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                    <div class="mt-2">
+                        <input type="text" asp-for="Name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-4">
+                    <label asp-for=Description class="block text-sm font-medium leading-6 text-gray-900">Descripcion</label>
+                    <div class="mt-2">
+                        <input type="text" asp-for=Description class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                        <label asp-for="Category" class="block text-sm font-medium leading-6 text-gray-900">Categoria</label>
+                    <div class="mt-2">
+                            <select type="text" asp-for="Category" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <option>Fruta</option>
+                            <option>Verdura</option>
+                            <option>Almacen</option>
+                            <option>Perfumeria</option>
+                            <option>Bolson</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-span-full">
+                        <label asp-for="ImageUrl" class="block text-sm font-medium leading-6 text-gray-900">Url de la Imagen</label>
+                    <div class="mt-2">
+                        <input type="text" asp-for="ImageUrl" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label asp-for="Price" class="block text-sm font-medium leading-6 text-gray-900">Precio</label>
+                    <div class="mt-2">
+                        <input type="text" asp-for="Price" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button asp-controller="home" asp-action="index" class="text-sm font-semibold leading-6 text-gray-900">Salir</button>
+        <button type="submit" value="Save" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Guardar</button>
+    </div>
+    </div>
+
+</form>
+</div>

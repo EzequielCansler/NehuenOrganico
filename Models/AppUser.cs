@@ -12,6 +12,7 @@ namespace NehuenOrganico.Models
         public string? Address { get; set; }
 
 
+        
 
     }
 }

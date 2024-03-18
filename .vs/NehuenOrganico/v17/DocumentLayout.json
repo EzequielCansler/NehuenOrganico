@@ -3,32 +3,44 @@
   "WorkspaceRootPath": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\extensions\\extension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:extensions\\extension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\repositories\\productsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:repositories\\productsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\views\\products\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:views\\products\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\views\\products\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:views\\products\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\repositories\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:repositories\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|d:\\documentos\\ingenieria informatica\\miproyectos\\nehuenorganico\\models\\categories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07074037-2C2F-449B-A6FD-E8E007661594}|NehuenOrganico.csproj|solutionrelative:models\\categories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,16 +54,29 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "DocumentIndex": 6,
+              "Title": "Add.cshtml",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Products\\Add.cshtml",
+              "RelativeDocumentMoniker": "Views\\Products\\Add.cshtml",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Products\\Add.cshtml",
+              "RelativeToolTip": "Views\\Products\\Add.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-14T20:19:23.84Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Repositories\\Interfaces\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\IProductRepository.cs",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Repositories\\Interfaces\\IProductRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\IProductRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAkAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T18:48:53.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-14T21:00:58.421Z",
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -61,23 +86,49 @@
               "RelativeDocumentMoniker": "Repositories\\ProductsRepository.cs",
               "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Repositories\\ProductsRepository.cs",
               "RelativeToolTip": "Repositories\\ProductsRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T16:17:10.911Z",
+              "WhenOpened": "2024-03-15T14:42:29.071Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "Controllers\\ProductsController.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowDgAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-13T16:20:38.885Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Extension.cs",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Extensions\\Extension.cs",
+              "RelativeDocumentMoniker": "Extensions\\Extension.cs",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Extensions\\Extension.cs",
+              "RelativeToolTip": "Extensions\\Extension.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T19:12:04.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAALAAAA",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-09T14:24:00.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-18T16:47:42.952Z"
             },
             {
               "$type": "Document",
@@ -87,48 +138,45 @@
               "RelativeDocumentMoniker": "Views\\Products\\Edit.cshtml",
               "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Products\\Edit.cshtml",
               "RelativeToolTip": "Views\\Products\\Edit.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAA0AAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAD4AAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-09T00:32:48.904Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-15T21:00:38.712Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T21:48:39.636Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAD4AAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-15T15:02:20.949Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
-              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "Data\\AppDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "Categories.cs",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Models\\Categories.cs",
+              "RelativeDocumentMoniker": "Models\\Categories.cs",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Models\\Categories.cs",
+              "RelativeToolTip": "Models\\Categories.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T17:42:48.809Z"
+              "WhenOpened": "2024-03-14T00:20:02.502Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "Models\\Product.cs",
-              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Models\\Product.cs",
-              "RelativeToolTip": "Models\\Product.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAUAAAAZAAAA",
+              "DocumentIndex": 8,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\documentos\\ingenieria informatica\\MiProyectos\\NehuenOrganico\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB8AAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-08T16:50:53.286Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-13T15:36:49.744Z"
             }
           ]
         }

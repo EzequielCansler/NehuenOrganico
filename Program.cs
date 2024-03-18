@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NehuenOrganico.Data;
 using NehuenOrganico.Models;
+using NehuenOrganico.Repositories;
+using NehuenOrganico.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IProductRepository, ProductsRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoriesRepository>();
 
 var app = builder.Build();
 

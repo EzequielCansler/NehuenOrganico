@@ -228,6 +228,23 @@ namespace NehuenOrganico.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("NehuenOrganico.Models.Categories", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("NehuenOrganico.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -236,15 +253,12 @@ namespace NehuenOrganico.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -259,7 +273,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -317,14 +331,18 @@ namespace NehuenOrganico.Migrations
 
             modelBuilder.Entity("NehuenOrganico.Models.Product", b =>
                 {
-                    b.HasOne("NehuenOrganico.Models.AppUser", null)
-                        .WithMany("ProductList")
-                        .HasForeignKey("AppUserId");
+                    b.HasOne("NehuenOrganico.Models.Categories", "category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
                 });
 
-            modelBuilder.Entity("NehuenOrganico.Models.AppUser", b =>
+            modelBuilder.Entity("NehuenOrganico.Models.Categories", b =>
                 {
-                    b.Navigation("ProductList");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

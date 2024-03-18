@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NehuenOrganico.Models
 {
@@ -8,11 +9,9 @@ namespace NehuenOrganico.Models
         [StringLength(100)]
         [MaxLength(256)]
         [Required]
+        
         public string? Name { get; set; }
         public string? Address { get; set; }
-
-
         
-
     }
 }

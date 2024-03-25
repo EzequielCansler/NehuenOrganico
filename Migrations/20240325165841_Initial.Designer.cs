@@ -12,8 +12,8 @@ using NehuenOrganico.Data;
 namespace NehuenOrganico.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240321001019_ChangeColumnOrder")]
-    partial class ChangeColumnOrder
+    [Migration("20240325165841_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,13 +161,16 @@ namespace NehuenOrganico.Migrations
             modelBuilder.Entity("NehuenOrganico.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -203,6 +206,7 @@ namespace NehuenOrganico.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
@@ -231,7 +235,7 @@ namespace NehuenOrganico.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("NehuenOrganico.Models.Categories", b =>
+            modelBuilder.Entity("NehuenOrganico.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -245,7 +249,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("NehuenOrganico.Models.Order", b =>
@@ -260,25 +264,71 @@ namespace NehuenOrganico.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Comments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Shipping")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("StateId")
+                        .HasColumnType("int");
+
                     b.Property<float>("Total")
                         .HasColumnType("real");
 
+                    b.Property<int?>("UserIp")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId");
 
-                    b.ToTable("Orders");
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("NehuenOrganico.Models.OrderItem", b =>
+                {
+                    b.Property<int>("OrderItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderItemId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("NehuenOrganico.Models.Product", b =>
@@ -289,7 +339,7 @@ namespace NehuenOrganico.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
@@ -300,9 +350,6 @@ namespace NehuenOrganico.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -310,9 +357,24 @@ namespace NehuenOrganico.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("OrderId");
+                    b.ToTable("Product");
+                });
 
-                    b.ToTable("Products");
+            modelBuilder.Entity("NehuenOrganico.Models.State", b =>
+                {
+                    b.Property<int>("StateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StateId"));
+
+                    b.Property<string>("StateName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StateId");
+
+                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -366,24 +428,43 @@ namespace NehuenOrganico.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NehuenOrganico.Models.Product", b =>
-                {
-                    b.HasOne("NehuenOrganico.Models.Categories", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NehuenOrganico.Models.Order", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("NehuenOrganico.Models.Order", b =>
                 {
-                    b.Navigation("Products");
+                    b.HasOne("NehuenOrganico.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("NehuenOrganico.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId");
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("NehuenOrganico.Models.OrderItem", b =>
+                {
+                    b.HasOne("NehuenOrganico.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("NehuenOrganico.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("NehuenOrganico.Models.Product", b =>
+                {
+                    b.HasOne("NehuenOrganico.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

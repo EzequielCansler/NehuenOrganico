@@ -15,21 +15,20 @@ namespace NehuenOrganico.Repositories
 
         public  List<Product> GetAll()
         {
-            return  _context.Products.ToList();
+            return  _context.Product.ToList();
         }
 
 
         public Product? GetById(int ProductId)
         {
-            var product = _context.Products.FirstOrDefault(x => x.ProductId == ProductId);
+            var product = _context.Product.FirstOrDefault(x => x.ProductId == ProductId);
             if (product != null)
             {
                 return new Product
                 {
                     ProductId = product.ProductId,
                     Name = product.Name,
-                    CategoryId = product.CategoryId,
-                    Description = product.Description,
+                    CategoryId = product.CategoryId,          
                     Price = product.Price,
                     ImageUrl = product.ImageUrl
                 };
@@ -40,12 +39,11 @@ namespace NehuenOrganico.Repositories
 
         public void Update(Product updatedProduct)
         {           
-                var existingProduct = _context.Products.FirstOrDefault(p => p.ProductId == updatedProduct.ProductId);
+                var existingProduct = _context.Product.FirstOrDefault(p => p.ProductId == updatedProduct.ProductId);
                 if (existingProduct != null)
                 {
                     existingProduct.Name = updatedProduct.Name;
-                    existingProduct.CategoryId = updatedProduct.CategoryId;
-                    existingProduct.Description = updatedProduct.Description;
+                    existingProduct.CategoryId = updatedProduct.CategoryId;                  
                     existingProduct.Price = updatedProduct.Price;
                     existingProduct.ImageUrl = updatedProduct.ImageUrl;
 
@@ -58,12 +56,11 @@ namespace NehuenOrganico.Repositories
             var addProduct = new Product   
             {
                 Name = product.Name,
-                CategoryId = product.CategoryId,
-                Description = product.Description,
+                CategoryId = product.CategoryId,             
                 Price = product.Price,
                 ImageUrl = product.ImageUrl
             };
-            _context.Products.Add(addProduct);
+            _context.Product.Add(addProduct);
             _context.SaveChanges();
             return (addProduct);
         }
@@ -71,10 +68,10 @@ namespace NehuenOrganico.Repositories
 
         public void DeleteProduct(int productId)
         {
-            Product product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            Product product = _context.Product.FirstOrDefault(x => x.ProductId == productId);
             if (product != null)
             {
-                _context.Products.Remove(product);
+                _context.Product.Remove(product);
                 _context.SaveChanges();
             }
         }

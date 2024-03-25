@@ -14,9 +14,9 @@ namespace NehuenOrganico.Repositories
             
         }
 
-        public List<Categories> GetAllCategories()
+        public List<Category> GetAllCategories()
         {
-           return _context.Categories.ToList();
+           return _context.Category.ToList();
         }
     }
 }

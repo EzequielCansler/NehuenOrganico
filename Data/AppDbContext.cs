@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using NehuenOrganico.Models;
 
+
+
 namespace NehuenOrganico.Data
 {
     public class AppDbContext : IdentityDbContext<AppUser>
@@ -10,10 +12,12 @@ namespace NehuenOrganico.Data
         {
 
         }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
+        public DbSet<State> State { get; set; }
 
-       
+
     }
-
 }

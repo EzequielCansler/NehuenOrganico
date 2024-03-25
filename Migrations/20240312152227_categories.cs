@@ -25,16 +25,7 @@ namespace NehuenOrganico.Migrations
             migrationBuilder.DropColumn(
                 name: "Category",
                 table: "Products");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Products",
-                type: "nvarchar(255)",
-                maxLength: 255,
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
+            
 
             migrationBuilder.AddColumn<int>(
                 name: "CategoryId",
@@ -87,16 +78,6 @@ namespace NehuenOrganico.Migrations
             migrationBuilder.DropColumn(
                 name: "CategoryId",
                 table: "Products");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Products",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(255)",
-                oldMaxLength: 255,
-                oldNullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "AppUserId",

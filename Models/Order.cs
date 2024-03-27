@@ -25,8 +25,8 @@ namespace NehuenOrganico.Models
         [ForeignKey("StateId")]
         public State State { get; set; }
         //
-        [ForeignKey("Id")]
         public string? Id { get; set; }
+        [ForeignKey("Id")]
         public AppUser AppUser { get; set; }
 
         

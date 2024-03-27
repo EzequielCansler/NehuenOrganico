@@ -158,7 +158,6 @@ namespace NehuenOrganico.Migrations
             modelBuilder.Entity("NehuenOrganico.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -261,14 +260,11 @@ namespace NehuenOrganico.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Comments")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -292,7 +288,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("Id");
 
                     b.HasIndex("StateId");
 
@@ -429,7 +425,7 @@ namespace NehuenOrganico.Migrations
                 {
                     b.HasOne("NehuenOrganico.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("Id");
 
                     b.HasOne("NehuenOrganico.Models.State", "State")
                         .WithMany()

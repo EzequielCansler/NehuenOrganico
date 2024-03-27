@@ -6,9 +6,6 @@ namespace NehuenOrganico.Models
 {
     public class AppUser:IdentityUser
     {
-        [Required]
-        [MaxLength(450)]
-        public string Id { get; set; }
         [StringLength(100)]
         [MaxLength(256)]
         [Required]

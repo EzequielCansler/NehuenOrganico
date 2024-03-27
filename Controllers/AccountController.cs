@@ -20,24 +20,6 @@ namespace NehuenOrganico.Controllers
         {
             return View();
         }
-        public IActionResult GetAllUsers()
-        {
-            // Obtener todos los usuarios registrados
-            var users = userManager.Users.ToList();
-
-            // Convertir la lista de usuarios en una lista de ViewModels si es necesario
-            var userViewModels = users.Select(user => new AppUser
-            {
-                Id = user.Id,
-                Name = user.Name,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                Address = user.Address
-                // Agrega aquí más propiedades si es necesario
-            }).ToList();
-
-            return View(userViewModels);
-        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM model)

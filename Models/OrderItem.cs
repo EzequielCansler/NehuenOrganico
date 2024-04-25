@@ -9,7 +9,7 @@ namespace NehuenOrganico.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int OrderItemId { get; set; }
         public int Quantity { get; set; }
-        public float Price { get; set; }
+        public double UnitPrice { get; set; }
 
         public int? ProductId { get; set; }
 

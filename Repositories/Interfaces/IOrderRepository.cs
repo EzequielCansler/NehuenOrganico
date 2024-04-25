@@ -4,6 +4,12 @@ namespace NehuenOrganico.Repositories.Interfaces
 {
     public interface IOrderRepository
     {
-        void CreateOrder(Product product);
+        int AddItem(int ProductId, int qty);
+        int RemoveItem(int ProductId);
+        Order GetItem(string userId);
+        string GetUserId();
+        int GetCartItemCount(string userId="");
+        List<OrderItem> GetUserCart();
+        bool DoCheckOut(string shippingDetails, string comments);
     }
 }

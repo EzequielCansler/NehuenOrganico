@@ -1,26 +1,23 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using NehuenOrganico.Data;
 using NehuenOrganico.Models;
 using NehuenOrganico.Repositories.Interfaces;
 using System.Linq;
 
+
+
 namespace NehuenOrganico.Repositories
 {
-    public class OrderRepository
-    {
-        
-        private readonly AppDbContext _appDbContext;
-        private readonly IOrderRepository _orderRepo;
-        private readonly UserManager<IdentityUser> _userManager;
+    public class OrderRepository : IOrderRepository
+    {       
+        private readonly AppDbContext _appDbContext;     
+        private readonly UserManager<AppUser> _userManager;
         private readonly IHttpContextAccessor _contextAccessor;
 
-        public OrderRepository(AppDbContext appDbContext, IOrderRepository orderRepo,UserManager<IdentityUser> userManager, IHttpContextAccessor contextAccessor)
+        public OrderRepository(AppDbContext appDbContext,UserManager<AppUser> userManager, IHttpContextAccessor contextAccessor)
         {
             _appDbContext = appDbContext;
-            _contextAccessor = contextAccessor;
-            _orderRepo = orderRepo; 
+            _contextAccessor = contextAccessor;         
             _userManager = userManager;
         }
 
@@ -28,43 +25,45 @@ namespace NehuenOrganico.Repositories
         public int AddItem(int ProductId,int qty)
         {
             string userId = GetUserId();
-            using var transaction = _appDbContext.Database.BeginTransaction();
+            
             try
             {
                 if (string.IsNullOrEmpty(userId))
                     throw new Exception("Usuario no conectado");
-                Order cart = GetItem(userId);
-                if(cart == null)
+                Order order = GetItem(userId);
+                if(order == null)
                 {
-                    cart = new Order
+                    order = new Order
                     {
                         Id = userId,
                     };
-                    _appDbContext.Add(cart);
+                    _appDbContext.Add(order);
+                    _appDbContext.SaveChanges();
                 }
                 // order item
-                var cartItem = _appDbContext.OrderItem.FirstOrDefault(x => x.OrderId == cart.OrderId && x.ProductId == ProductId);
-                if(cartItem != null)
+                var orderItem = _appDbContext.OrderItem.FirstOrDefault(x => x.OrderId == order.OrderId && x.ProductId == ProductId);
+                if(orderItem != null)
                 {
-                    cartItem.Quantity += qty;
+                    orderItem.Quantity += qty;
                 }
                 else
                 {
-                    Product produ = _appDbContext.Product.Find(ProductId);
-                    cartItem = new OrderItem
+                    Product produ = _appDbContext.Product.FirstOrDefault(x => x.ProductId == ProductId);
+                    orderItem = new OrderItem
                     {
                         ProductId = ProductId,
-                        OrderId = cartItem.OrderId,
+                        OrderId = order.OrderId,
                         Quantity = qty,
                         UnitPrice = produ.Price
                     };
-                    _appDbContext.OrderItem.Add(cartItem);
+                    _appDbContext.OrderItem.Add(orderItem);
                 }
                 _appDbContext.SaveChanges();
-                transaction.Commit();               
+                               
             }
-            catch(Exception ex)
+            catch
             {
+                throw new Exception("error al agregar el item");
             }
             var cartItemCount = GetCartItemCount(userId);
             return cartItemCount;
@@ -95,25 +94,30 @@ namespace NehuenOrganico.Repositories
             var cartItemCount = GetCartItemCount(userId);
             return cartItemCount;
         } // done
-        private Order GetItem(string userId) 
+        public Order GetItem(string userId) 
         {
             Order item = _appDbContext.Order.FirstOrDefault(x => x.Id == userId);
             return item;
         }// done
-        private string GetUserId()
+        public string GetUserId()
         {
             var user = _contextAccessor.HttpContext.User;
             var userId = _userManager.GetUserId(user);
             return userId;
         } // done
-        private int GetCartItemCount(string userId="")
+        public int GetCartItemCount(string userId) // ToDo arreglarlo
         {
             if (!string.IsNullOrEmpty(userId))
             {
                 userId = GetUserId();
             }
-            Order order = _appDbContext.Order.FirstOrDefault(x => x.Id == userId);
-            return _appDbContext.OrderItem.Count(x => x.OrderId == order.OrderId);
+            var data =  (from Order in _appDbContext.Order
+                       join OrderItem in _appDbContext.OrderItem
+                       on Order.OrderId equals OrderItem.OrderId
+                       select new { OrderItem.OrderItemId }
+                       ).ToList();
+                               
+            return data.Count();
         }// done
         public List<OrderItem> GetUserCart()
         {
@@ -128,7 +132,7 @@ namespace NehuenOrganico.Repositories
                 .Where(item => item.OrderId == order.OrderId)
                 .ToList();                               
         }// done
-        public bool DoCheckOut (string shippingDetails, string comments )
+        public bool DoCheck (string shippingDetails, string comments )
         {
             using var transaction = _appDbContext.Database.BeginTransaction();
             {
@@ -186,5 +190,6 @@ namespace NehuenOrganico.Repositories
             }
         }// ToDo
 
+      
     }
 }

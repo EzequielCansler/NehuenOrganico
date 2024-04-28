@@ -35,11 +35,11 @@ namespace NehuenOrganico.Controllers
             return View(cart);
         }
 
-        public IActionResult GetTotalItemInCart()
+        public IActionResult GetTotalItemInCart(string userId)
         {
 
-            int cartItem = _orderRepo.GetCartItemCount();
-            return View();
+            int cartItem = _orderRepo.GetCartItemCount(userId);
+            return View(cartItem);
         }
 
     }

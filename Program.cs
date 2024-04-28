@@ -26,10 +26,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
     })
     .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoriesRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 var app = builder.Build();
 
@@ -42,11 +44,11 @@ app.MapControllerRoute(
         pattern: "{controller=Home}/{action=Index}/{id?}"
     );
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
 
 
 app.UseHttpsRedirection();

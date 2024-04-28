@@ -8,7 +8,7 @@
         <h2 class="text-2xl font-bold tracking-tight text-gray-900 items-center">Customers also purchased</h2>
 
         <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            @foreach (var product in Model)
+            @foreach (Product product in Model)
             {
                 <div class="flex flex-col rounded-lg">
                     <div class="mt-4 flex flex-col">
@@ -22,11 +22,11 @@
                         </div>
 
                         <div class="w-full rounded-lg mt-10 lg:h-80">
-                            <img src="@product.ImageUrl" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                            <img src="@product.ImageUrl" alt="@product.Name" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                         </div>
                         <div class="flex justify-between mt-2">
                             <div class="flex">
-                                <button asp-controller="Order" asp-action="addItem" asp-route-id="@product.ProductId" class="bg-indigo-600 text-white px-2 py-1 m-2 rounded-md hover:bg-indigo-700">
+                                <button type="button" onclick="add(@product.ProductId)" class="bg-indigo-600 text-white px-2 py-1 m-2 rounded-md hover:bg-indigo-700">
                                     Agregar
                                 </button>
                                 <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="bg-indigo-600 text-white px-2 py-1 m-2 rounded-md hover:bg-indigo-700">
@@ -41,5 +41,31 @@
             }
         </div>
     </div>
-
  </div>
+@section Scripts {
+    <script>
+        function add(productId) {
+            try {
+                fetch(`/orders/AddItem?productId=${productId}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            return response.json();
+                        } else {
+                            throw new Error('Error en la respuesta del servidor');
+                        }
+                    })
+                    .then(result => {
+                        var cartCountElement = document.getElementById("cartCount");
+                        cartCountElement.innerHTML = result;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    </script>
+}
+

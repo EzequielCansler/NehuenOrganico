@@ -10,13 +10,10 @@ namespace NehuenOrganico.Models
         public int OrderId { get; set; }
         public DateTime CreateDate { get; set; }
         [Required(ErrorMessage = "Requiere el nombre")]
-        public string Name { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Requiere el número")]
+        public string? Name { get; set; } = string.Empty;
         [RegularExpression(@"^\d{7,15}$", ErrorMessage = "El número de teléfono debe tener entre 7 y 15 dígitos.")]
-        public string PhoneNumber { get; set; }
-        [Required(ErrorMessage = "Requiere la direccion")]
-        public string Address { get; set; }
-        [Required(ErrorMessage = "Requiere saber el envio")]
+        public string? PhoneNumber { get; set; }
+        public string? Address { get; set; }
         public string? Shipping { get; set; }
         public string? Comments { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = "El total debe ser mayor o igual a cero")]

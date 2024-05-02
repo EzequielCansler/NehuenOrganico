@@ -13,16 +13,25 @@ namespace NehuenOrganico.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IProductRepository _productRepo;
+        
+
 
         public HomeController(AppDbContext context, IProductRepository productRepository)
         {
             _productRepo = productRepository;
             _context = context;
+            
         }
         
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
             var product = _productRepo.GetAll();
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                product = product.Where(x => x.Name.Contains(searchString)).ToList();
+            }
+
             return View(product);
         }
 
@@ -30,6 +39,8 @@ namespace NehuenOrganico.Controllers
        public  IActionResult GetAll()
         {
             var product = _productRepo.GetAll();
+            
+
             return Ok(product);
         }
         

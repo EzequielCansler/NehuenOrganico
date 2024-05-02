@@ -24,8 +24,7 @@ namespace NehuenOrganico.Repositories
 
         public int AddItem(int ProductId,int qty)
         {
-            string userId = GetUserId();
-            
+            string userId = GetUserId();           
             try
             {
                 if (string.IsNullOrEmpty(userId))
@@ -68,18 +67,18 @@ namespace NehuenOrganico.Repositories
             var cartItemCount = GetCartItemCount(userId);
             return cartItemCount;
         } // done
-        public int RemoveItem(int ProductId)
+        public int RemoveItem(int id)
         {            
             string userId = GetUserId();
             try
             {
                 if (string.IsNullOrEmpty(userId))
                     throw new Exception("Usuario no conectado");
-                Order cart = GetItem(userId);
-                if (cart == null)
+                Order order = GetItem(userId);
+                if (order == null)
                     throw new Exception("Carrito invalido");
                 // order item
-                var cartItem = _appDbContext.OrderItem.FirstOrDefault(x => x.OrderId == cart.OrderId && x.ProductId == ProductId);
+                var cartItem = _appDbContext.OrderItem.FirstOrDefault(x => x.OrderId == order.OrderId && x.ProductId == id);
                 if (cartItem == null)
                     throw new Exception("No tiene items el carrito");
                 else if(cartItem.Quantity == 1) 
@@ -105,7 +104,7 @@ namespace NehuenOrganico.Repositories
             var userId = _userManager.GetUserId(user);
             return userId;
         } // done
-        public int GetCartItemCount(string userId) // ToDo arreglarlo
+        public int GetCartItemCount(string userId) 
         {
             if (!string.IsNullOrEmpty(userId))
             {
@@ -114,10 +113,10 @@ namespace NehuenOrganico.Repositories
             var data =  (from Order in _appDbContext.Order
                        join OrderItem in _appDbContext.OrderItem
                        on Order.OrderId equals OrderItem.OrderId
-                       select new { OrderItem.OrderItemId }
-                       ).ToList();
+                       select OrderItem.Quantity 
+                       ).Sum();
                                
-            return data.Count();
+            return data;
         }// done
         public List<OrderItem> GetUserCart()
         {
@@ -132,7 +131,7 @@ namespace NehuenOrganico.Repositories
                 .Where(item => item.OrderId == order.OrderId)
                 .ToList();                               
         }// done
-        public bool DoCheck (string shippingDetails, string comments )
+        public bool DoCheckOut (string shippingDetails, string comments )
         {
             using var transaction = _appDbContext.Database.BeginTransaction();
             {
@@ -185,6 +184,7 @@ namespace NehuenOrganico.Repositories
                 }
                 catch (Exception)
                 {
+                    transaction.Rollback();
                     return false;
                 }            
             }

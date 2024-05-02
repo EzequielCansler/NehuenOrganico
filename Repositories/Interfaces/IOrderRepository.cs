@@ -10,6 +10,6 @@ namespace NehuenOrganico.Repositories.Interfaces
         string GetUserId();
         int GetCartItemCount(string? userId);
         List<OrderItem> GetUserCart();
-        bool DoCheck(string shippingDetails, string comments);
+        bool DoCheckOut(string shippingDetails, string comments);
     }
 }

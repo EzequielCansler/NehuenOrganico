@@ -3,37 +3,33 @@
     ViewData["Title"] = "Catalogo";
 }
 
-<div class="bg-red">
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        
-
+<div class="bg-[#d1e7dd]">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">     
         <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             @foreach (Product product in Model)
             {
-                <div class="flex flex-col rounded-lg">
-                    <div class="mt-4 flex flex-col">
-                        <div>
-                            <h3 class="text-sm text-gray-700 font-bold">
-                                <a>
-                                    <span aria-hidden="true"></span>
-                                    @product.Name <!-- Usar el nombre del producto desde el modelo -->
+                <div class="  rounded-lg overflow-hidden shadow-sm">
+                    <img src="@product.ImageUrl"
+                         alt="@product.Name"
+                         width="300"
+                         height="200"
+                         style="aspect-ratio: 300 / 200; object-fit: cover;"
+                         class="w-full h-48 object-cover sm:h-64 md:h-72 rounded-t-lg" />
+                    <div class="p-4 bg-[#a3cfbb] rounded-b-lg ">
+                        <h3 class="text-lg font-semibold mb-2">@product.Name</h3>
+                        <p class="text-muted-foreground mb-4">@product.Detail</p> 
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">$@product.Price</span>
+                            <div class="flex gap-2">
+                                <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
+                                    <span>Editar</span>
                                 </a>
-                            </h3>                           
-                        </div>
-
-                        <div class="w-full rounded-lg mt-10 lg:h-80">
-                            <img src="@product.ImageUrl" alt="@product.Name" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-                        </div>
-                        <div class="flex justify-between mt-2">
-                            <div class="flex">
-                                <button type="button" onclick="add(@product.ProductId)" class="bg-indigo-600 text-white px-2 py-1 m-2 rounded-md hover:bg-indigo-700">
-                                    Agregar
+                                <button type="button" onclick="add(@product.ProductId)" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
                                 </button>
-                                <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="bg-indigo-600 text-white px-2 py-1 m-2 rounded-md hover:bg-indigo-700">
-                                    Editar
-                                </a>
                             </div>
-                            <p class="text-sm font-medium text-gray-900">$@product.Price</p>
                         </div>
                     </div>
                 </div>

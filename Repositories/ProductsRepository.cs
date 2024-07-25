@@ -30,6 +30,7 @@ namespace NehuenOrganico.Repositories
                     Name = product.Name,
                     CategoryId = product.CategoryId,          
                     Price = product.Price,
+                    Detail = product.Detail,
                     ImageUrl = product.ImageUrl
                 };
             }
@@ -45,6 +46,7 @@ namespace NehuenOrganico.Repositories
                     existingProduct.Name = updatedProduct.Name;
                     existingProduct.CategoryId = updatedProduct.CategoryId;                  
                     existingProduct.Price = updatedProduct.Price;
+                    existingProduct.Detail = updatedProduct.Detail;
                     existingProduct.ImageUrl = updatedProduct.ImageUrl;
 
                     _context.SaveChanges();
@@ -58,6 +60,7 @@ namespace NehuenOrganico.Repositories
                 Name = product.Name,
                 CategoryId = product.CategoryId,             
                 Price = product.Price,
+                Detail = product.Detail,
                 ImageUrl = product.ImageUrl
             };
             _context.Product.Add(addProduct);

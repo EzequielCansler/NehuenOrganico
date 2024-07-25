@@ -4,6 +4,7 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
     <title>@ViewData["Title"] - NehuenOrganico</title>
+
 </head>
 
 <body class="h-full">
@@ -37,31 +38,30 @@
         });
     </script> 
     <script>
-        loadCartCount();
-        function loadCartCount() {           
-            try {
-                fetch(`/orders/GetTotalItemInCart`)
+        document.addEventListener("DOMContentLoaded", function () {
+            var cartCountElement = document.getElementById('cartItemCount');
+            if (cartCountElement) {
+                fetch('/item/ItemCount')
                     .then(response => {
-                        if (response.status === 200) {
-
+                        if (response.ok) {
                             return response.json();
                         } else {
-                            throw new Error('Error en la respuesta del servidor');
+                            return response.text().then(text => { throw new Error(text); });
                         }
                     })
-                    .then(result => {
-                        var cartCountElement = document.getElementById("cartCount");
-                        cartCountElement.innerHTML = result;
+                    .then(data => {
+                        console.log('Cantidad de artículos:', data); // Agrega un console log para depurar
+                        cartCountElement.innerText = data;
                     })
                     .catch(error => {
-                        console.log(error);
+                        console.error('Error al obtener el conteo de artículos del carrito:', error);
                     });
+            } else {
+                console.error('Elemento con ID "cartItemCount" no encontrado.');
             }
-            catch (err) {
-                console.log(err);
-            }
-        }
+        });
     </script>
+
      @await RenderSectionAsync("Scripts", required: false) 
 </body>
 </html>

@@ -11,21 +11,22 @@
             <div class="border-b border-gray-900/10 pb-12">
 
                 <h2 class="text-base font-semibold leading-7 text-gray-900">Crear Nuevo Producto</h2>
-   
 
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+                    <!-- Nombre -->
                     <div class="sm:col-span-3">
                         <label asp-for="Name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
                         <div class="mt-2">
                             <input type="text" asp-for="Name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
-                   
 
+                    <!-- Categoria -->
                     <div class="sm:col-span-3">
                         <label asp-for="CategoryId" class="block text-sm font-medium leading-6 text-gray-900">Categoria</label>
                         <div class="mt-2">
-                            <select type="text" asp-for="CategoryId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <select asp-for="CategoryId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 @foreach (Category category in categories)
                                 {
                                     <option value="@category.CategoryId">@category.CategoryName</option>
@@ -34,21 +35,33 @@
                         </div>
                     </div>
 
+                    <!-- Url de la Imagen -->
                     <div class="col-span-full">
                         <label asp-for="ImageUrl" class="block text-sm font-medium leading-6 text-gray-900">Url de la Imagen</label>
                         <div class="mt-2">
-                            <input type="text" asp-for="ImageUrl" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="text" asp-for="ImageUrl" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 lg:h-12 lg:text-lg">
                         </div>
                     </div>
 
+                    <!-- Descripción -->
+                    <div class="col-span-full">
+                        <label asp-for="Detail" class="block text-sm font-medium leading-6 text-gray-900">Descripcion</label>
+                        <div class="mt-2">
+                            <input type="text" asp-for="Detail" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 lg:h-24 lg:text-lg">
+                        </div>
+                    </div>
+
+                    <!-- Precio -->
                     <div class="sm:col-span-2">
                         <label asp-for="Price" class="block text-sm font-medium leading-6 text-gray-900">Precio</label>
                         <div class="mt-2">
                             <input type="text" asp-for="Price" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
+
                 </div>
             </div>
+
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <button asp-controller="home" asp-action="index" class="text-sm font-semibold leading-6 text-gray-900">Salir</button>

@@ -4,6 +4,7 @@ using NehuenOrganico.Data;
 using NehuenOrganico.Models;
 using NehuenOrganico.Repositories;
 using NehuenOrganico.Repositories.Interfaces;
+using NehuenOrganico.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +32,9 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
 builder.Services.AddScoped<IProductRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoriesRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
+builder.Services.AddScoped<OrderService>();
 
 var app = builder.Build();
 
@@ -52,6 +55,7 @@ app.MapControllerRoute(
 
 
 app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 

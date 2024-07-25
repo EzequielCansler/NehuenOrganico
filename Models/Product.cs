@@ -16,6 +16,8 @@ namespace NehuenOrganico.Models
         [Range(0, double.MaxValue, ErrorMessage = "El precio debe ser mayor que cero")]
         public float Price { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
+        public string Detail { get; set; } = string.Empty;
+
         public int? CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]

@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <!--<ItemGroup>
+    <Content Remove="Views\Orders\Create.cshtml" />
+  </ItemGroup>-->
+
   <ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
@@ -21,6 +25,10 @@
 
 	<Target Name="Tailwind" BeforeTargets="Build">
 		<Exec Command="npm run css:build" />
-	</Target>
+	</Target> 
+
+	<!--<ItemGroup>
+	  <None Include="Views\Orders\Create.cshtml" />
+	</ItemGroup>-->
 
 </Project>

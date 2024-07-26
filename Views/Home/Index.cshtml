@@ -3,45 +3,42 @@
     ViewData["Title"] = "Catalogo";
 }
 
-<div class="bg-[#d1e7dd]">
-    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">     
-        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            @foreach (Product product in Model)
-            {
-                <div class="  rounded-lg overflow-hidden shadow-sm">
-                    <img src="@product.ImageUrl"
-                         alt="@product.Name"
-                         width="300"
-                         height="200"
-                         style="aspect-ratio: 300 / 200; object-fit: cover;"
-                         class="w-full h-48 object-cover sm:h-64 md:h-72 rounded-t-lg" />
-                    <div class="p-4 bg-[#a3cfbb] rounded-b-lg ">
-                        <h3 class="text-lg font-semibold mb-2">@product.Name</h3>
-                        <p class="text-muted-foreground mb-4">@product.Detail</p> 
-                        <div class="flex items-center justify-between">
+<div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        @foreach (Product product in Model)
+        {
+            <div class="flex flex-col rounded-lg overflow-hidden shadow-sm">
+                <img src="@product.ImageUrl"
+                     alt="@product.Name"
+                     width="300"
+                     height="200"
+                     style="aspect-ratio: 300 / 200; object-fit: cover;"
+                     class="w-full h-48 object-cover sm:h-64 md:h-72 rounded-t-lg" />
+                <div class="bg-[#a3cfbb] rounded-b-lg p-2 flex flex-col flex-grow">
+                    <h3 class="text-lg font-semibold mb-2">@product.Name</h3>
+                    <p class="flex-grow mb-4">@product.Detail</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex flex-row gap-2">
                             <span class="text-primary font-semibold">$@product.Price</span>
-                            <div class="flex gap-2">
-                                <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
-                                    <span>Editar</span>
-                                </a>
-                                <button type="button" onclick="add(@product.ProductId)" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </button>
-                            </div>
+                            <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 bg-[#d1e7dd] text-foreground">
+                                <span>Editar</span>
+                            </a>
+                            <button type="button" onclick="add(@product.ProductId)" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
-
-            }
-        </div>
+            </div>
+        }
     </div>
- </div>
+</div>
+
 @section Scripts {
     <script>
         function add(productId) {
-            
             try {
                 fetch(`/orders/AddItem?productId=${productId}`)
                     .then(response => {
@@ -54,7 +51,6 @@
                     .then(result => {
                         var cartCountElement = document.getElementById("cartCount");
                         cartCountElement.innerHTML = result;
-                        
                     })
                     .catch(error => {
                         console.log(error);
@@ -66,4 +62,3 @@
         }
     </script>
 }
-

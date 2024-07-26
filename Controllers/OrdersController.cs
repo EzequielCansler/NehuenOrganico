@@ -12,32 +12,34 @@ namespace NehuenOrganico.Controllers
     {
         private readonly IOrderRepository _orderRepo;
         private readonly IProductRepository _produRepo;
-        private readonly  IItemRepository _itemRepo;
+        private readonly IItemRepository _itemRepo;
+        private readonly ICategoryRepository _cateRepo;
 
         private readonly OrderService _orderService;
 
 
-        public OrdersController(IOrderRepository orderRepo, IProductRepository produRepo, OrderService orderService, IItemRepository itemRepo)
+        public OrdersController(IOrderRepository orderRepo, IProductRepository produRepo, OrderService orderService, IItemRepository itemRepo, ICategoryRepository cateRepo)
         {
-            _orderRepo = orderRepo;           
+            _orderRepo = orderRepo;
             _produRepo = produRepo;
             _orderService = orderService;
             _itemRepo = itemRepo;
+            _cateRepo = cateRepo;
         }
 
-        public IActionResult AddItem(int productId, int qty = 1,int redirect=0)
+        public IActionResult AddItem(int productId, int qty = 1, int redirect = 0)
         {
 
-            var cartCount = _orderRepo.AddItem(productId,qty);
+            var cartCount = _orderRepo.AddItem(productId, qty);
             if (redirect == 0)
-                return Ok(cartCount);        
+                return Ok(cartCount);
             return RedirectToAction("GetUserCart");
         }
 
         public IActionResult RemoveItem(int id)
         {
-                var cartCount = _orderRepo.RemoveItem(id);
-            return RedirectToAction("Index","Orders");
+            var cartCount = _orderRepo.RemoveItem(id);
+            return RedirectToAction("Index", "Orders");
         }
 
 
@@ -52,7 +54,7 @@ namespace NehuenOrganico.Controllers
         //    int cartItem = _orderRepo.GetCartItemCount(orderId);
         //    return Json(cartItem);
         //}
-        
+
 
 
         [HttpGet]
@@ -62,14 +64,16 @@ namespace NehuenOrganico.Controllers
             order = _orderRepo.GetUserOrders();
 
 
+            ViewData["States"] = _orderRepo.GetAllStates();
+            ViewData["Product"] = _produRepo.GetAll();
             ViewData["Items"] = _itemRepo.GetAllItems();
             return View(order);
         }
-       
+
         public IActionResult Add()
         {
             Order order = new();
-           
+
             var items = _orderRepo.GetUserCart().ToList();
             var products = new List<Product>();
             foreach (OrderItem item in items)
@@ -79,20 +83,20 @@ namespace NehuenOrganico.Controllers
             }
             int? orderId = items.First().OrderId;
             int? stateId = _orderRepo.GetStateIdByOrderId(orderId);
-            if(stateId == 1)
+            if (stateId == 1)
             {
-            ViewData["OrderItem"] = items;          
-            ViewData["Products"] = products;
-            ViewData["OrderId"] = items.FirstOrDefault()?.OrderId;
+                ViewData["OrderItem"] = items;
+                ViewData["Products"] = products;
+                ViewData["OrderId"] = items.FirstOrDefault()?.OrderId;
 
-            return View(order);
+                return View(order);
 
             }
             else
             {
                 return RedirectToAction("Index", "Orders");
             }
-            
+
         }
         [HttpPost]
         public IActionResult NewOrder(int id, string shipping, string comments)
@@ -103,5 +107,14 @@ namespace NehuenOrganico.Controllers
             return RedirectToAction("Index", "Orders");
         }
 
+        [HttpPost]
+        public IActionResult NewState(int orderId, int StateId)
+        {
+            bool isStateChanged = _orderRepo.ChangeState(orderId, StateId);
+            if (!isStateChanged)
+                return View("Error");
+
+            return View("Succes");
+        }
     }
 }

@@ -2,55 +2,76 @@
 @{
     ViewData["Title"] = "Pedidos";
     List<OrderItem> items = (List<OrderItem>)ViewData["Items"];
+    List<Product> products = (List<Product>)ViewData["Product"];
+    List<State> states = (List<State>)ViewData["States"];
+
 }
 
-<div class="w-full bg-[#d1e7dd] text-foreground">
-    <div class="container mx-auto py-8">
+<div class="w-full h-full bg-[#d1e7dd] text-foreground">
+    <div class="container mx-auto w-4/5 py-8">
         <div>
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl font-semibold">My Orders</h2>
+            <div class="w-full flex justify-center mb-4">
+                <h2 class="text-2xl font-semibold">Historial de Pedidos</h2>
             </div>
-            <div class="grid border-black gap-2 bg-[#a3cfbb] rounded-lg">
-                @foreach (Order order in Model)
-                {
-                    <div class="rounded-lg overflow-hidden shadow-sm mx-2 border-2 ">
-                        <div class="p-4 order-container cursor-pointer">
-                            <div class="flex items-center justify-between ">
-                                <div class="border-2 rounded-lg gap-2 border-white">
-                                    <h3 class="text-lg font-semibold">@order.</h3>
+
+            <div class="grid gap-1 bg-[#a3cfbb] rounded-lg shadow-lg ">
+                <div class="rounded-lg overflow-hidden   p-4">
+                    @foreach (Order order in Model)
+                    {
+                        <input type="hidden" asp-for="@order.OrderId" value="@order.OrderId" />
+                        <div class="order-container cursor-pointer mb-4">
+                            <div class="flex items-center justify-between rounded-lg px-4 py-2 bg-[#d1e7dd] shadow-lg hover:bg-white">
+                                <div>
+                                    <h3 class="text-lg font-semibold">@order.OrderId</h3>
                                     <p class="text-muted-foreground">@order.Comments</p>
                                     <p class="text-muted-foreground">@order.CreateDate</p>
                                     <p class="text-muted-foreground">@order.Shipping</p>
-                                    
                                 </div>
                                 <div class="text-right flex items-center">
                                     <p class="text-primary font-semibold">Total: @order.Total$</p>
-                                    
                                     <p class="text-red-500 font-semibold ml-4">Cancelled</p>
                                 </div>
                             </div>
-                            <div class="items-container hidden  ">
-                                <div class="p-4 bg-[#d1e7dd] rounded-lg">
-                                    <div class="grid gap-2">
-                                @foreach(OrderItem item in items){
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <h4 class="text-lg font-semibold">@item.ProductId</h4>
-                                            <p class="text-muted-foreground">@item.Quantity</p>
+                            <div class="items-container hidden">
+                                @foreach (OrderItem item in items)
+                                {
+                                    var product = products.FirstOrDefault(x => x.ProductId == item.ProductId);
+                                    <div class="p-1 bg-[#d1e7dd] rounded-lg m-2">
+                                        <div class="grid gap-2">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="flex-shrink-0">
+                                                    <h4 class="text-lg font-semibold">@product?.Name</h4>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <p class="text-muted-foreground">Cantidad: @item.Quantity</p>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <p class="text-muted-foreground">@product?.Price$</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                }                                                              
-                                        <!-- Más ítems aquí si es necesario -->
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
 
-                        <div class="flex justify-end">
-                            <button class="items-center  px-2 py-1 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-[#91bda0]">
-                            Cambiar Estado
-                        </button>
-                            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-[#d1e7dd] hover:bg-[#b8d6cb] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 w-10 ml-auto m-2">
+                        <div class="flex justify-between mt-4">                           
+                            <div class="flex items-center space-x-4">
+                                <!-- Selección del Estado -->
+                                <select asp-for="@order.StateId" id="orderState" name="@order.StateId" class="w-32 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white">
+                                    @foreach (State state in states)
+                                    {
+                                        <option value="@state.StateId">@state.StateName</option>
+                                    }
+                                </select>
+
+                                <!-- Botón para cambiar el estado -->
+                               @*  <button id="changeStateButton" class="inline-flex items-center justify-center w-32 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white">
+                                    Cambiar Estado
+                                </button> *@
+                            </div>
+
+                            <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium bg-[#d1e7dd] hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-md shadow-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      width="24"
                                      height="24"
@@ -67,9 +88,8 @@
                                 <span class="sr-only">Cancel order</span>
                             </button>
                         </div>
-                    </div>
-                }
-                
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -89,4 +109,27 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var button = document.getElementById('changeStateButton');
+            button.addEventListener('click', function () {
+                var select = document.getElementById('orderState');
+                var selectedValue = select.value;
+
+                // Aquí puedes enviar la selección al servidor usando fetch o redirigir
+                fetch(`/orders/ChangeState?stateId=${selectedValue}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            // Manejar la respuesta del servidor
+                        } else {
+                            throw new Error('Error en la respuesta del servidor');
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            });
+        });
+    </script>
 }
+

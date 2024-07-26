@@ -2,6 +2,7 @@
 using NehuenOrganico.Data;
 using NehuenOrganico.Models;
 using NehuenOrganico.Repositories.Interfaces;
+using System;
 
 
 
@@ -48,7 +49,7 @@ namespace NehuenOrganico.Repositories
                         _appDbContext.Add(order);
                         _appDbContext.SaveChanges();
                     }
-                    
+
                     // agrega los items del pedido
                     var orderItem = _appDbContext.OrderItem.FirstOrDefault(x => x.OrderId == order.OrderId && x.ProductId == ProductId);
                     if (orderItem != null)
@@ -71,7 +72,8 @@ namespace NehuenOrganico.Repositories
                     var cartItemCount = GetCartItemCount(order.OrderId);
                     return cartItemCount;
                 }
-                else {
+                else
+                {
                     return 0;
                 }
             }
@@ -137,13 +139,13 @@ namespace NehuenOrganico.Repositories
             }
             Order order = _appDbContext.Order.FirstOrDefault(x => x.Id == userId);
 
-            
-                return _appDbContext.OrderItem
-                    .Where(item => item.OrderId == order.OrderId)
-                    .ToList();
 
-            
-            
+            return _appDbContext.OrderItem
+                .Where(item => item.OrderId == order.OrderId)
+                .ToList();
+
+
+
         }// done
         public bool CreateOrder(int id, string shippingDetails, string comments, double total, DateTime date)
         {
@@ -192,6 +194,11 @@ namespace NehuenOrganico.Repositories
 
             return order;
         }
+
+        public List<State> GetAllStates()
+        {
+            return _appDbContext.State.ToList();
+        }
         public int? GetStateIdByOrderId(int? orderId)
         {
             int stateId = _appDbContext.Order
@@ -200,6 +207,26 @@ namespace NehuenOrganico.Repositories
                 .FirstOrDefault();
 
             return stateId;
+        }
+
+        public bool ChangeState(int orderId, int stateId)
+        {
+            try
+            {
+                Order order = _appDbContext.Order.FirstOrDefault(x => x.OrderId == orderId);
+
+                order.StateId = stateId;
+                _appDbContext.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+
         }
     }
 }

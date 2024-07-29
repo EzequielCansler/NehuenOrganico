@@ -244,7 +244,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("NehuenOrganico.Models.Order", b =>
@@ -289,7 +289,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("NehuenOrganico.Models.OrderItem", b =>
@@ -318,7 +318,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", (string)null);
                 });
 
             modelBuilder.Entity("NehuenOrganico.Models.Product", b =>
@@ -351,7 +351,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("NehuenOrganico.Models.State", b =>
@@ -368,7 +368,7 @@ namespace NehuenOrganico.Migrations
 
                     b.HasKey("StateId");
 
-                    b.ToTable("State");
+                    b.ToTable("State", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -17,6 +17,9 @@ namespace NehuenOrganico.Models
         public string? Shipping { get; set; }
         public string? Comments { get; set; }
         [Range(0, double.MaxValue, ErrorMessage = "El total debe ser mayor o igual a cero")]
+
+        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
+
         public double Total { get; set; }
         //FK's
         public int? StateId { get; set; }

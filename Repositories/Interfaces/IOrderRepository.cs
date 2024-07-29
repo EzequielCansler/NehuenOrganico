@@ -10,12 +10,11 @@ namespace NehuenOrganico.Repositories.Interfaces
         string GetUserId();
         int GetCartItemCount(int orderId);
         List<OrderItem> GetUserCart();
-        bool CreateOrder(int id,string shippingDetails, string comments, double total,DateTime date);
+        bool CreateOrder(int id, string shippingDetails, string comments, double total, DateTime date);
         List<Order> GetUserOrders();
         List<State> GetAllStates();
-
-         int? GetStateIdByOrderId(int? orderId);
-         bool ChangeState(int orderId, int stateId);
+        Order GetPendingOrder();
+        bool ChangeState(int orderId, int stateId);
 
     }
 }

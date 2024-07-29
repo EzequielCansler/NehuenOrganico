@@ -26,19 +26,17 @@
 
             if (userMenuButton && userMenu && mobileMenuButton && mobileMenu) {
                 userMenuButton.addEventListener("click", function () {
-                    console.log("User Menu Clicked");
+                    
                     userMenu.classList.toggle("hidden");
                 });
 
                 mobileMenuButton.addEventListener("click", function () {
-                    console.log("Mobile Menu Clicked");
+                   
                     mobileMenu.classList.toggle("hidden");
                 });
             }
         });
-    </script> 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        function updateCartItemCount() {
             var cartCountElement = document.getElementById('cartItemCount');
             if (cartCountElement) {
                 fetch('/item/ItemCount')
@@ -50,7 +48,6 @@
                         }
                     })
                     .then(data => {
-                        console.log('Cantidad de artículos:', data); // Agrega un console log para depurar
                         cartCountElement.innerText = data;
                     })
                     .catch(error => {
@@ -59,6 +56,10 @@
             } else {
                 console.error('Elemento con ID "cartItemCount" no encontrado.');
             }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateCartItemCount(); // Actualiza el conteo del carrito cuando la página se carga
         });
     </script>
 

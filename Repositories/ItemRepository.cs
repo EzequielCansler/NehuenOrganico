@@ -38,17 +38,8 @@ namespace NehuenOrganico.Repositories
                 {
                     throw new Exception("El ID de usuario no es válido.");
                 }
-                var order = _appDbContext.Order
-                    .Where(o => o.Id == userId)
-                    .FirstOrDefault();
-                if (order == null)
-                {
-                    return 0;
-                }
-                if (order.StateId > 1)
-                {
-                    return 0;
-                }
+                var order = _appDbContext.Order.FirstOrDefault(x=> x.StateId == 1 && x.Id == userId);
+                
                 var totalQuantity = _appDbContext.OrderItem
                     .Where(x => x.OrderId == order.OrderId)
                     .Sum(x => x.Quantity);

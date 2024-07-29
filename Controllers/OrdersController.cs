@@ -35,13 +35,18 @@ namespace NehuenOrganico.Controllers
                 return Ok(cartCount);
             return RedirectToAction("GetUserCart");
         }
-
+        public IActionResult Add()
+        {
+           
+            Order order = _orderRepo.GetPendingOrder();
+          
+            return View(order);
+        }
         public IActionResult RemoveItem(int id)
         {
             var cartCount = _orderRepo.RemoveItem(id);
             return RedirectToAction("Index", "Orders");
         }
-
 
         public IActionResult GetUserCart()
         {
@@ -49,55 +54,15 @@ namespace NehuenOrganico.Controllers
             return Json(cart);
         }
 
-        //public IActionResult GetTotalItemInCart(int orderId)
-        //{        
-        //    int cartItem = _orderRepo.GetCartItemCount(orderId);
-        //    return Json(cartItem);
-        //}
-
-
-
         [HttpGet]
         public IActionResult Index()
         {
             List<Order> order = new();
             order = _orderRepo.GetUserOrders();
 
-
-            ViewData["States"] = _orderRepo.GetAllStates();
-            ViewData["Product"] = _produRepo.GetAll();
-            ViewData["Items"] = _itemRepo.GetAllItems();
             return View(order);
         }
 
-        public IActionResult Add()
-        {
-            Order order = new();
-
-            var items = _orderRepo.GetUserCart().ToList();
-            var products = new List<Product>();
-            foreach (OrderItem item in items)
-            {
-                Product product = _produRepo.GetById(item.ProductId);
-                products.Add(product);
-            }
-            int? orderId = items.First().OrderId;
-            int? stateId = _orderRepo.GetStateIdByOrderId(orderId);
-            if (stateId == 1)
-            {
-                ViewData["OrderItem"] = items;
-                ViewData["Products"] = products;
-                ViewData["OrderId"] = items.FirstOrDefault()?.OrderId;
-
-                return View(order);
-
-            }
-            else
-            {
-                return RedirectToAction("Index", "Orders");
-            }
-
-        }
         [HttpPost]
         public IActionResult NewOrder(int id, string shipping, string comments)
         {
@@ -108,13 +73,49 @@ namespace NehuenOrganico.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewState(int orderId, int StateId)
+        public IActionResult CancelOrder(int OrderId)
         {
-            bool isStateChanged = _orderRepo.ChangeState(orderId, StateId);
+            bool isStateChanged = _orderRepo.ChangeState(OrderId, 5);
             if (!isStateChanged)
                 return View("Error");
 
-            return View("Succes");
+            var refererUrl = Request.Headers["Referer"].ToString();
+            if (!string.IsNullOrEmpty(refererUrl))
+            {
+                return Redirect(refererUrl);
+            }
+            return RedirectToAction("Index", "Orders");
+
+        }
+        [HttpPost]
+        public IActionResult PaidOrder(int OrderId)
+        {
+            bool isStateChanged = _orderRepo.ChangeState(OrderId, 3);
+            if (!isStateChanged)
+                return View("Error");
+
+            var refererUrl = Request.Headers["Referer"].ToString();
+            if (!string.IsNullOrEmpty(refererUrl))
+            {
+                return Redirect(refererUrl);
+            }
+            return RedirectToAction("Index", "Orders");
+
+        }
+        [HttpPost]
+        public IActionResult deliveredOrder(int OrderId)
+        {
+            bool isStateChanged = _orderRepo.ChangeState(OrderId, 4);
+            if (!isStateChanged)
+                return View("Error");
+
+            var refererUrl = Request.Headers["Referer"].ToString();
+            if (!string.IsNullOrEmpty(refererUrl))
+            {
+                return Redirect(refererUrl);
+            }
+            return RedirectToAction("Index", "Orders");
+
         }
     }
 }

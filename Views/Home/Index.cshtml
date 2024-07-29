@@ -49,8 +49,7 @@
                         }
                     })
                     .then(result => {
-                        var cartCountElement = document.getElementById("cartCount");
-                        cartCountElement.innerHTML = result;
+                        updateCartItemCount()
                     })
                     .catch(error => {
                         console.log(error);

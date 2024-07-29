@@ -11,7 +11,7 @@ namespace NehuenOrganico.Models
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
 
-        public int ProductId { get; set; } // ToDo le saque el ?
+        public int ProductId { get; set; } 
 
         [ForeignKey("ProductId")]
         public Product Product { get; set; }

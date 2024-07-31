@@ -6,9 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <!--<ItemGroup>
-    <Content Remove="Views\Orders\Create.cshtml" />
-  </ItemGroup>-->
+ 
 
   <ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
@@ -27,8 +25,5 @@
 		<Exec Command="npm run css:build" />
 	</Target> 
 
-	<!--<ItemGroup>
-	  <None Include="Views\Orders\Create.cshtml" />
-	</ItemGroup>-->
-
+	
 </Project>

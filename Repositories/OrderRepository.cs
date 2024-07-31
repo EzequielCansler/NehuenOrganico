@@ -34,8 +34,7 @@ namespace NehuenOrganico.Repositories
             {
                 if (string.IsNullOrEmpty(userId))
                     throw new Exception("Usuario no conectado");
-                //Order order = GetOrder(userId);
-                //int? state = GetStateIdByOrderId(order.OrderId);
+                
                 Order order = _appDbContext.Order.FirstOrDefault(x => x.StateId == 1);
                 if (order == null)
                 {
@@ -84,7 +83,7 @@ namespace NehuenOrganico.Repositories
             {
                 if (string.IsNullOrEmpty(userId))
                     throw new Exception("Usuario no conectado");
-                Order order = GetOrder(userId);
+                Order order = _appDbContext.Order.FirstOrDefault(x=> x.StateId == 1);
                 if (order == null)
                     throw new Exception("Carrito invalido");
                 // order item

@@ -18,11 +18,14 @@
                     <h3 class="text-lg font-semibold mb-2">@product.Name</h3>
                     <p class="flex-grow mb-4">@product.Detail</p>
                     <div class="flex items-center justify-between">
-                        <div class="flex flex-row gap-2">
-                            <span class="text-primary font-semibold">$@product.Price</span>
-                            <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 bg-[#d1e7dd] text-foreground">
-                                <span>Editar</span>
-                            </a>
+                        <span class="text-primary font-semibold">$@product.Price</span>
+                        <div class="flex items-center gap-2 ml-auto">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 bg-[#d1e7dd] text-foreground">
+                                    <span>Editar</span>
+                                </a>
+                            }
                             <button type="button" onclick="add(@product.ProductId)" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -31,6 +34,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         }
     </div>

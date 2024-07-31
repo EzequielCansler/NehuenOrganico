@@ -17,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(
-    options => 
+    options =>
     {
         options.Password.RequiredUniqueChars = 0;
         options.Password.RequireUppercase = false;
@@ -26,13 +26,14 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
         options.Password.RequireLowercase = false;
     })
     .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+    
+
+
 builder.Services.AddScoped<IProductRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoriesRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<IDashboardAdmRepository, DashboardAdmRepository>();
 
 builder.Services.AddScoped<OrderService>();
 
@@ -60,5 +61,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();

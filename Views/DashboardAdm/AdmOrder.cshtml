@@ -1,0 +1,71 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "AdmPedidos";
+}
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-1 mt-8">
+    @foreach (Order order in Model)
+    {
+        <div class="bg-green-50 rounded-lg overflow-hidden shadow-sm m-4 flex flex-col justify-between">
+            <div class="p-4 flex-grow">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="font-medium">@order.Name</div>
+                    <div>Dia Pedido - @order.CreateDate.ToString("dd/MM/yyyy")</div>
+                    <form asp-controller="Orders" asp-action="CancelOrder" method="post" class="inline-flex items-center">
+                        <input type="hidden" name="OrderId" value="@order.OrderId" />
+                        <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium bg-[#d1e7dd] hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-md shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 class="h-5 w-5 text-muted-foreground">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                            <span class="sr-only">Cancel order</span>
+                        </button>
+                    </form>
+                </div>
+                <div>Dia de entrega: @order.Shipping</div>
+                <div>Direccion: @order.AppUser.Address</div>
+                <div>Telefono: @order.AppUser.PhoneNumber</div>
+                <div>Comentarios</div>
+                <div class="mb-4">@order.Comments</div>
+                <div class="mb-4">
+                    @foreach (var item in order.Items)
+                    {
+                        <div class="flex items-center justify-between">
+                            <div>@item.Product.Name</div>
+                            <div>@item.Quantity x $@String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:N2}", item.UnitPrice)</div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <form asp-controller="Orders" asp-action="PaidOrder" method="post">
+                            <input type="hidden" name="OrderId" value="@order.OrderId" />
+                            <button class="inline-flex items-center justify-center w-28 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white">
+                                Pagado
+                            </button>
+                        </form>
+                        <form asp-controller="Orders" asp-action="deliveredOrder" method="post">
+                            <input type="hidden" name="OrderId" value="@order.OrderId" />
+                            <button class="inline-flex items-center justify-center w-28 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white">
+                                Entregado
+                            </button>
+                        </form>
+                    </div>
+                    <div class="font-medium">Total $@String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:N2}", order.Total)</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

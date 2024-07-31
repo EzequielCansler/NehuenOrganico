@@ -1,44 +1,64 @@
 ﻿@model LoginVM
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Iniciar Sesión";
 }
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Ingresa a tu cuenta</h2>
-    </div>
 
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form asp-action="Login" class="space-y-6" method="POST">
+<div class="min-h-screen w-full bg-[#d1e7dd] text-foreground flex justify-center items-center py-12 md:py-24">
+    <div class="bg-green-50 rounded-lg shadow-sm p-6 w-full max-w-md">
+        <div class="flex items-center gap-2 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 class="w-6 h-6">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                      fill="green"></path>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+            </svg>
+            <h2 class="text-2xl font-semibold">Iniciar sesión</h2>
+        </div>
+
+        <form asp-action="Login" class="space-y-6" method="post">
             <div asp-validation-summary="ModelOnly"></div>
-            <div>
-                <label asp-for="Username" class="block text-sm font-medium leading-6 text-gray-900">Nombre de Usuario</label>
-                <div class="mt-2">
-                    <input asp-for="Username" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <span asp-validation-for="Username" class="text-500"></span>
-                </div>
+
+            <div class="grid gap-2">
+                <label asp-for="Username" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                       for="email">
+                    Correo electrónico
+                </label>
+                <input asp-for="Username" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:border-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                       id="email"
+                       placeholder="Ingresa tu correo"
+                       type="email" />
+                <span asp-validation-for="Username" class="text-red-500"></span>
             </div>
 
-            <div>
-                <div class="flex items-center justify-between">
-                    <label asp-for="Password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                </div>
-                <div class="mt-2">
-                    <input asp-for="Password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <span asp-validation-for="Password"></span>
-                </div>
-            </div>
-            <div >
-                <label asp-for="RememberMe" class="form-check-label m-2">
-                    <input asp-for="RememberMe" class="form-check-input" />@Html.DisplayNameFor(a => a.RememberMe)
+            <div class="grid gap-2">
+                <label asp-for="Password" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                       for="password">
+                    Contraseña
                 </label>
+                <input asp-for="Password" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:border-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                       id="password"
+                       placeholder="Ingresa tu contraseña"
+                       type="password" />
+                <span asp-validation-for="Password" class="text-red-500"></span>
             </div>
-            <div class="text-sm">
-                <a asp-action="Register" class="font-semibold text-indigo-600 hover:text-indigo-500">No tienes cuenta?</a>
+
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-green-600 text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                    type="submit">
+                Iniciar sesión
+            </button>
+            <div class="text-sm mt-4 text-center">
+                ¿No tienes una cuenta?
+                <a asp-action="Register" class="font-semibold underline text-green-600hover:text-green-600">Registrarse</a>
             </div>
-            <div>
-                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-            </div>
+
         </form>
     </div>
 </div>

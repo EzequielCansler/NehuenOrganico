@@ -1,138 +1,89 @@
 ﻿@model Order
 @{
     ViewData["Title"] = "Carrito";
-    // List<Product> products = ViewData["Products"] as List<Product>;
-    // List<OrderItem> items = ViewData["OrderItem"] as List<OrderItem>;
-    // var orderId = ViewBag.OrderId as int?;
 }
-<div class="lg:flex lg:min-h-full lg:flex-row-reverse lg:overflow-hidden">
-    <div class="px-4 py-6 sm:px-6 lg:hidden">
-        <div class="mx-auto flex max-w-lg">
-            <a href="#">
-                <span class="sr-only">Your Company</span>
-                <img src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" class="h-8 w-auto">
-            </a>
+
+
+<div class="container mx-auto py-8 mt-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h2 class="text-2xl font-semibold mb-4">Carrito</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="bg-card rounded-lg overflow-hidden shadow-sm">
+                        <div class="p-4">
+                            <img src="@item.Product.ImageUrl"
+                                 alt="@item.Product.Name"
+                                 width="200"
+                                 height="200"
+                                 class="w-full h-40 object-cover rounded-md mb-2"
+                                 style="aspect-ratio: 200 / 200; object-fit: cover;" />
+                            <h3 class="text-lg font-semibold">@item.Product.Name</h3>
+                            <p class="text-muted-foreground">Cantidad: @item.Quantity</p>
+
+                            <p class="text-muted-foreground">$@item.UnitPrice</p>
+                            <a asp-action="RemoveItem" asp-route-id="@item.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-white hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-2 w-full">
+                                Eliminar
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="bg-[#a3cfbb] p-2 rounded-lg sticky top-4 self-start">
+            <h2 class="text-lg inline-flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="h-6 w-6">
+                    <!-- Ajusta la altura y el ancho del SVG -->
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                </svg>
+                <span>Completa el Pedido</span>
+            </h2>
+
+
+            <form method="post" asp-controller="Orders" asp-action="NewOrder" class="bg-card rounded-lg overflow-hidden shadow-sm p-6">
+                <div class="grid gap-4">
+                    <div class="grid gap-2">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                               for="comments">
+                            Comentarios
+                        </label>
+                        <textarea asp-for="Comments" id="Comments" autocomplete="Comentarios.." class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                  id="comments"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="grid gap-2">
+                        <h4 class="block text-sm font-semibold ">Dia de Deliveri</h4>
+                        <div class="mt-1">
+                            <div class="m-2 flex space-x-2">
+                                <div class="flex h-5 items-center">
+                                    <input type="checkbox" unchecked class="h-4 w-4 rounded border-green-600  focus:ring-green-600">
+                                </div>
+                                <label class="text-sm font-medium text-gray-900">Martes</label>
+                            </div>
+                            <div class="m-2 flex space-x-2">
+                                <div class="flex h-5 items-center">
+                                    <input type="checkbox" unchecked class="h-4 w-4 rounded border-green-600  focus:ring-green-600">
+                                </div>
+                                <label class="text-sm font-medium text-gray-900">Jueves</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" class="inline-flex items-center justify-center w-28 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white mt-2">
+                        Pedir
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-
-    <h1 class="sr-only">Checkout</h1>
-
-    <!-- Mobile order summary -->
-    <section aria-labelledby="order-heading" class="bg-gray-50 px-4 py-6 sm:px-6 lg:hidden">
-        <div class="mx-auto max-w-lg">
-            <div class="flex items-center justify-between">
-                <h2 id="order-heading" class="text-lg font-medium text-gray-900">Your Order</h2>
-                <!-- Only display for open option. -->
-                <span>Hide full summary</span>
-                <!-- Don't display for open option. -->
-                <span>Show full summary</span>
-            </div>
-
-            <div id="disclosure-1">
-                <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200">
-                    <li class="flex space-x-6 py-6">
-                        <img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg" alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps." class="h-40 w-40 flex-none rounded-md bg-gray-200 object-cover object-center">
-                        <div class="flex flex-col justify-between space-y-4">
-                            <div class="space-y-1 text-sm font-medium">
-                                <h3 class="text-gray-900">Micro Backpack</h3>
-                                <p class="text-gray-900">$70.00</p>
-                                <p class="text-gray-500">Moss</p>
-                                <p class="text-gray-500">5L</p>
-                            </div>
-                            <div class="flex space-x-4">
-                                <button type="button" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Edit</button>
-                                <div class="flex border-l border-gray-300 pl-4">
-                                    <button type="button" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- More products... -->
-                </ul>
-
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Order summary -->
-
-    <section aria-labelledby="summary-heading" class="hidden w-full max-w-md flex-col bg-gray-50 lg:flex">
-        <h2 id="summary-heading" class="sr-only">Order summary</h2>
-        <ul role="list" class="flex-auto divide-y divide-gray-200 overflow-y-auto px-6">
-            @foreach (var item in Model.Items)
-            {
-
-                <li class="flex space-x-6 py-6">
-                    <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="h-40 w-40 flex-none rounded-md bg-gray-200 object-cover object-center">
-                    <div class="flex flex-col justify-between space-y-4">
-                        <div class="space-y-1 text-sm font-medium">
-                            <h3 class="text-gray-900">@item.Product.Name</h3>
-                            <p class="text-gray-900">$@item.UnitPrice</p>
-                            @* <p class="text-gray-500">@product.</p> *@
-                            <p class="text-gray-500">Cantidad: @item.Quantity</p>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a type="button" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Edit</a>
-                            <div class="flex border-l border-gray-300 pl-4">
-                                <a asp-action="RemoveItem" asp-route-id="@item.ProductId" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Remove</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-            }
-        </ul>
-
-
-    </section>
-
-
-
-    <!-- Checkout form -->
-    <section class="flex-auto overflow-y-auto px-4 pb-16 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-24 lg:pt-0">
-
-
-        <form method="post" asp-controller="Orders" asp-action="NewOrder" class="mt-6">
-            <input type="hidden" asp-for="Id" value="@Model.OrderId" />
-            <div class="grid grid-cols-12 gap-x-4 gap-y-6">
-                <div class="col-span-full">
-                    <label asp-for="Comments" class="block text-sm font-medium text-gray-700">Comentarios</label>
-                    <div class="mt-1">
-                        <input asp-for="Comments" id="Comments" autocomplete="Comentarios.." class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                </div>
-
-                <div class="col-span-full">
-                    <label asp-for="Shipping" class="block text-sm font-medium text-gray-700">Envio</label>
-                    <div class="mt-1">
-                        <input asp-for="Shipping" type="text" id="Shipping" autocomplete="martes o jueves?" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                </div>
-
-
-            </div>
-
-            <div class="mt-6 flex space-x-2">
-                <div class="flex h-5 items-center">
-                    <input id="same-as-shipping" name="same-as-shipping" type="checkbox" checked class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                </div>
-                <label for="same-as-shipping" class="text-sm font-medium text-gray-900">Billing address is the same as shipping address</label>
-            </div>
-            <div class="mt-1">
-
-                <button type="submit" class="mt-6 w-full rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Pedir</button>
-            </div>
-
-            @* <p class="mt-6 flex justify-center text-sm font-medium text-gray-500">
-            <svg class="mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-            </svg>
-            Payment details stored in plain text
-            </p> *@
-        </form>
-
-    </section>
 </div>

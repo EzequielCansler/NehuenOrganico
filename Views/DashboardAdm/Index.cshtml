@@ -1,0 +1,113 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="container mx-auto py-8 mt-4">
+    <div class="grid gap-8">
+        <div>
+            <h2 class="text-2xl font-semibold mb-4 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="h-6 w-6">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                </svg>
+                Pedidos
+            </h2>
+            <div class="bg-green-50 rounded-lg overflow-hidden shadow-sm">
+                <div class="relative w-full overflow-auto">
+                    <table class="w-full caption-bottom text-sm">
+                        <thead class="[&amp;_tr]:border-b">
+                            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Cliente
+                                </th>
+                                <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Fecha de Pedido
+                                </th>
+                                <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Dia de Entrega
+                                </th>
+                                <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Comentarios
+                                </th>
+                                <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Estado
+                                </th>
+                                <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                                    Cambio de estado
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="[&amp;_tr:last-child]:border-0">
+                            @foreach (Order order in Model)
+                            {
+                                <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-medium">@order.Name</td>
+                                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">@order.CreateDate.ToString("dd/MM/yyyy")</td>
+                                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">@order.Shipping</td>
+                                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">@order.Comments</td>
+                                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex gap-2">
+                                            <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground"
+                                                 data-v0-t="badge">
+                                                @order.State.StateName
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+                                        <div class="flex gap-2">
+                                            <form asp-controller="Orders" asp-action="PaidOrder" method="post">
+                                                <input type="hidden" name="OrderId" value="@order.OrderId" />
+                                                <button class="inline-flex items-center justify-center w-28 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white">
+                                                    Pagado
+                                                </button>
+                                            </form>
+                                            <form asp-controller="Orders" asp-action="deliveredOrder" method="post">
+                                                <input type="hidden" name="OrderId" value="@order.OrderId" />
+                                                <button class="inline-flex items-center justify-center w-28 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-white">
+                                                    Entregado
+                                                </button>
+                                            </form>
+                                            <form asp-controller="Orders" asp-action="CancelOrder" method="post" class="inline-flex items-center">
+                                                <input type="hidden" name="OrderId" value="@order.OrderId" />
+                                                <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium bg-[#d1e7dd] hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-md shadow-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         width="24"
+                                                         height="24"
+                                                         viewBox="0 0 24 24"
+                                                         fill="none"
+                                                         stroke="currentColor"
+                                                         stroke-width="2"
+                                                         stroke-linecap="round"
+                                                         stroke-linejoin="round"
+                                                         class="h-5 w-5 text-muted-foreground">
+                                                        <path d="M18 6 6 18"></path>
+                                                        <path d="m6 6 12 12"></path>
+                                                    </svg>
+                                                    <span class="sr-only">Cancel order</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

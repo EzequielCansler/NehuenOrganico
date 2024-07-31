@@ -45,7 +45,7 @@ namespace NehuenOrganico.Controllers
         public IActionResult RemoveItem(int id)
         {
             var cartCount = _orderRepo.RemoveItem(id);
-            return RedirectToAction("Index", "Orders");
+            return RedirectToAction("Add", "Orders");
         }
 
         public IActionResult GetUserCart()

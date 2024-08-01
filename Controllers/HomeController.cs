@@ -23,7 +23,7 @@ namespace NehuenOrganico.Controllers
             
         }
         
-        public IActionResult Index(string searchString)
+        public IActionResult Index(string searchString, string category)
         {
             var product = _productRepo.GetAll();
             
@@ -31,18 +31,16 @@ namespace NehuenOrganico.Controllers
             {
                 product = product.Where(x => x.Name.Contains(searchString)).ToList();
             }
+            if (!String.IsNullOrEmpty(category))
+            {
+                product = product.Where(x => x.Category.CategoryName == category).ToList();
+            }
+
+            product = product.OrderByDescending(x => x.ProductId).ToList();
 
             return View(product);
         }
 
-        [HttpGet]
-       public  IActionResult GetAll()
-        {
-            var product = _productRepo.GetAll();
-            
-
-            return Ok(product);
-        }
         
     }
 }

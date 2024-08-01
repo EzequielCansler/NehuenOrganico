@@ -16,18 +16,18 @@ namespace NehuenOrganico.Services
             _orderRepo = orderRepo;
         }
 
-        public bool CreateOrder(int id,string shippingDetails, string comments)
+        public bool CreateOrder(int orderId, string shippingDetails, string comments)
         {
             Order order = new Order();
             DateTime date = DateTime.Now;
             Double totalPrice = 0;
-            List<OrderItem> items = _itemRepo.GetAllItemsFormID(id);
+            List<OrderItem> items = _itemRepo.GetAllItemsFormID(orderId);
             foreach (OrderItem item in items)
             {
                 totalPrice += item.UnitPrice * item.Quantity;
             }
 
-            bool result = _orderRepo.CreateOrder(id,shippingDetails,comments, totalPrice, date);
+            bool result = _orderRepo.CreateOrder(orderId, shippingDetails,comments, totalPrice, date);
 
             return result;
         }

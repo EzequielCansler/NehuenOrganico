@@ -18,7 +18,8 @@
                      stroke-linecap="round"
                      stroke-linejoin="round"
                      class="h-6 w-6">
-                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                    fill="green"></path>
                     <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
                 </svg>
                 Pedidos
@@ -58,7 +59,12 @@
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">@order.Comments</td>
                                     <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
                                         <div class="flex gap-2">
-                                            <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground"
+                                            <div class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
+                                                @(order.State.StateName == "Pendiente" ? "bg-Pendiente text-white" :
+                                                  order.State.StateName == "Pedido" ? "bg-Pedido text-white" :
+                                                  order.State.StateName == "Pagado" ? "bg-Pagado text-white" :
+                                                  order.State.StateName == "Entregado" ? "bg-Entregado text-white" :
+                                                  order.State.StateName == "Cancelado" ? "bg-Cancelado text-white" : "bg-gray-200 text-gray-700")"
                                                  data-v0-t="badge">
                                                 @order.State.StateName
                                             </div>

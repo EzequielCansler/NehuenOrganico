@@ -15,7 +15,7 @@ namespace NehuenOrganico.Repositories
 
         public  List<Product> GetAll()
         {
-            return  _context.Product.ToList();
+            return  _context.Product.Include(x => x.Category).ToList();
         }
 
 

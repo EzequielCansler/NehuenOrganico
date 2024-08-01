@@ -3,106 +3,99 @@
     ViewData["Title"] = "Pedidos";
 }
 
-<div class="w-full h-full  text-foreground">
-    <div class="container mx-auto w-3/5 py-8">
-        <div>
-            <div class="w-full flex justify-center mb-4">
-                <h2 class="text-2xl font-semibold">Historial de Pedidos</h2>
-            </div>
+<div class="w-full min-h-screen text-foreground flex flex-col items-center py-8">
+    <div class="flex items-center gap-2 mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="24"
+             height="24"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             class="w-6 h-6 fill-primary">
+            <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                  fill="green"></path>
+            <path d="M12 11h4"></path>
+            <path d="M12 16h4"></path>
+            <path d="M8 11h.01"></path>
+            <path d="M8 16h.01"></path>
+        </svg>
+        <h2 class="text-2xl font-semibold">Historial de Pedidos</h2>
+    </div>
 
-            <div class="grid gap-8 bg-[#d1e7dd]">
-                @foreach (Order order in Model)
-                {
-                    <div class="rounded-lg shadow-lg shadow-[#a3cfbb] overflow-hidden p-4 bg-[#a3cfbb] min-h-[200px]">
-                        <div class="order-container ">
-                            <div class="flex items-center border-2 border-black justify-between rounded-lg px-4 py-2 bg-[#d1e7dd] shadow-lg ">
-                                <div class="flex-grow m-1 px-4 py-1  rounded-lg bg-green-50">
-                                    <h3 class="text-lg font-semibold">@order.OrderId# Dia de entrega - @order.Shipping</h3>
-                                    <p class="p-1">Dia Pedido - @order.CreateDate.ToString("dd/MM/yyyy")</p>
-                                    <p class="p-1">Cantidad de productos - @order.Items.Count()</p>
-                                </div>
-                                
-                                
-                            </div>
-                            <div class="items-container hidden">
-                                @foreach (var item in order.Items)
-                                {
-                                    <div class="p-1 bg-[#d1e7dd] rounded-lg m-2">
-                                        <div class="grid gap-2">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex-shrink-0 flex-1">
-                                                    <img src="@item.Product.ImageUrl" alt="@item.Product.Name" class="h-16 w-16 rounded-md">
-                                                </div>
-                                                <div class="flex-shrink-0 flex-1 text-center">
-                                                    <h4 class="text-lg font-semibold">@item.Product.Name</h4>
-                                                </div>
-                                                <div class="flex-shrink-0 flex-1 text-center">
-                                                    <p class="text-muted-foreground">@item.Quantity</p>
-                                                </div>
-                                                <div class="flex-shrink-0 flex-1 text-center">
-                                                    <p class="text-muted-foreground">$@item.Product.Price</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            <div class="flex justify-between mt-4">
-                                <div class="flex items-center space-x-4">
-                                    <div>
-                                        <div class="cursor-pointer font-medium p-2 m-6 rounded-md bg-[#d1e7dd] hover:bg-white">Ver Productos</div>
-                                    </div>
-                                    
-                                   
-                                </div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="text-right flex flex-col items-end space-y-2">
-                                        <p class="text-black font-semibold">@order.State.StateName</p>
-                                        <p class="text-primary font-semibold text-lg">
-                                            @order.Total.ToString("N2", new System.Globalization.CultureInfo("es-AR"))$
-                                        </p>
-                                    </div>
-                                    <form asp-action="CancelOrder" method="post" class="inline-flex items-center">
-                                        <input type="hidden" name="OrderId" value="@order.OrderId" />
-                                        <button class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium bg-[#d1e7dd] hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-md shadow-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 width="24"
-                                                 height="24"
-                                                 viewBox="0 0 24 24"
-                                                 fill="none"
-                                                 stroke="currentColor"
-                                                 stroke-width="2"
-                                                 stroke-linecap="round"
-                                                 stroke-linejoin="round"
-                                                 class="h-5 w-5 text-muted-foreground">
-                                                <path d="M18 6 6 18"></path>
-                                                <path d="m6 6 12 12"></path>
-                                            </svg>
-                                            <span class="sr-only">Cancel order</span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
+    @foreach (Order order in Model)
+    {
+        <div class="bg-green-50 shadow-lg m-4 rounded-lg shadow-sm p-6 w-full max-w-2xl mb-6">
+            <div class="space-y-4">
+                <div class="grid gap-2 border-b pb-4">
+                    <div class="flex items-center justify-between">
+                        <div class="font-medium">Pedido #@order.OrderId</div>
+                        <div class="text-muted-foreground">@order.CreateDate.ToString("dd/MM/yyyy")</div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-muted-foreground">Día de entrega: @order.Shipping</div>
+                        <div class="font-medium">@order.Items.Count() items</div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="font-medium">Estado:</div>
+                        <div class="font-medium
+                            @(order.State.StateName == "Pendiente" ? "text-Pendiente" :
+                              order.State.StateName == "Pedido" ? "text-Pedido" :
+                              order.State.StateName == "Pagado" ? "text-Pagado" :
+                              order.State.StateName == "Entregado" ? "text-Entregado" :
+                              order.State.StateName == "Cancelado" ? "text-Cancelado" : "text-gray-500")">
+                            @order.State.StateName
                         </div>
                     </div>
-                }
+                </div>
+                <div>
+                    <button type="button" class=" w-28 h-10 text-sm font-medium text-black bg-[#d1e7dd] rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 hover:bg-[#a3cfbb]" onclick="toggleProducts(@order.OrderId)">
+                        Ver productos
+                    </button>
+                </div>
+                <div class="grid gap-1 border-b hidden" id="products-@order.OrderId">
+                    @foreach (var item in order.Items)
+                    {
+                        <div class="grid grid-cols-[32px_1fr_32px_32px] items-center gap-1">
+                            <img src="@item.Product.ImageUrl"
+                                 alt="@item.Product.Name"
+                                 width="32"
+                                 height="32"
+                                 class="rounded-md object-cover"
+                                 style="aspect-ratio: 32 / 32; object-fit: cover;" />
+                            <div>
+                                <div class="font-medium">@item.Product.Name</div>
+                                <div class="text-muted-foreground text-sm">Cantidad: @item.Quantity</div>
+                            </div>
+                            <div class="text-right font-medium">$@String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:N2}", item.UnitPrice)</div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-4">
+                <form asp-controller="Orders" asp-action="CancelOrder" method="post">
+                    <input type="hidden" name="OrderId" value="@order.OrderId" />
+                    <button type="submit" class="inline-flex items-center justify-center w-28 h-10 text-sm font-medium text-white bg-red-600 rounded-md shadow-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 hover:bg-red-700">
+                        Cancelar
+                    </button>
+                </form>
+                <div class="text-right font-medium">$@String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:N2}", order.Total)</div>
             </div>
         </div>
-    </div>
+    }
 </div>
 
 @section Scripts {
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var orderContainers = document.querySelectorAll('.order-container .cursor-pointer');
-            orderContainers.forEach(function (container) {
-                container.addEventListener('click', function () {
-                    var itemsContainer = container.closest('.order-container').querySelector('.items-container');
-                    if (itemsContainer) {
-                        itemsContainer.classList.toggle('hidden');
-                    }
-                });
-            });
-        });
+        function toggleProducts(orderId) {
+            const productsDiv = document.getElementById(`products-${orderId}`);
+            if (productsDiv) {
+                productsDiv.classList.toggle('hidden');
+            }
+        }
     </script>
 }

@@ -3,7 +3,26 @@
     ViewData["Title"] = "Catalogo";
 }
 
-<div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+
+
+<div class="mx-auto max-w-2xl px-2 py-16 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
+    <div class="flex justify-center items-center gap-2 my-4">
+        <a asp-controller="Home" asp-action="Index" asp-route-category="" class="inline-flex items-center justify-center whitespace-nowrap bg-[#a3cfbb] rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-green-50 p-1 h-10">
+            Todos
+        </a>
+        <a asp-controller="Home" asp-action="Index" asp-route-category="Frutas" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-green-50 p-1 border border-input bg-[#a3cfbb]  hover:text-accent-foreground h-10">
+            Frutas
+        </a>
+        <a asp-controller="Home" asp-action="Index" asp-route-category="Verduras" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-green-50 p-1 border border-input bg-[#a3cfbb]  hover:text-accent-foreground h-10">
+            Verduras
+        </a>
+        <a asp-controller="Home" asp-action="Index" asp-route-category="Almacen" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-green-50 p-1 border border-input bg-[#a3cfbb]  hover:text-accent-foreground h-10">
+            Almacen
+        </a>
+        <a asp-controller="Home" asp-action="Index" asp-route-category="Perfumeria" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-green-50 p-1 border border-input bg-[#a3cfbb]  hover:text-accent-foreground h-10 ">
+            Perfumeria
+        </a>
+    </div>
     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         @foreach (Product product in Model)
         {
@@ -15,22 +34,25 @@
                      style="aspect-ratio: 300 / 200; object-fit: cover;"
                      class="w-full h-48 object-cover sm:h-64 md:h-72 rounded-t-lg" />
                 <div class="bg-[#a3cfbb] rounded-b-lg p-2 flex flex-col flex-grow">
-                    <h3 class="text-lg font-semibold mb-2">@product.Name</h3>
-                    <p class="flex-grow mb-4">@product.Detail</p>
+                    <h3 class="text-lg font-semibold border-b border-green-50 mb-2">@product.Name</h3>
+                    <p class="flex-grow border-b border-green-50 p-1 mb-4">@product.Detail</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-primary font-semibold">$@product.Price</span>
+                        <span class="text-primary font-semibold">
+                            $@String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:N2}", product.Price)
+                        </span>
                         <div class="flex items-center gap-2 ml-auto">
                             @if (User.IsInRole("Admin"))
                             {
-                                <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 bg-[#d1e7dd] text-foreground">
+                                <a asp-controller="Products" asp-action="edit" asp-route-id="@product.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-green-50 hover:text-accent-foreground h-10 w-10 bg-[#d1e7dd] text-foreground">
                                     <span>Editar</span>
                                 </a>
                             }
-                            <button type="button" onclick="add(@product.ProductId)" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
+                            <button type="button" onclick="add(@product.ProductId)" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-green-50 hover:text-accent-foreground h-10 w-10 p-2 bg-[#d1e7dd] text-foreground">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                             </button>
+                            <p class="text-red-500 font-medium hidden mt-2" id="message-@product.ProductId"></p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +65,9 @@
 @section Scripts {
     <script>
         function add(productId) {
+               
             try {
+
                 fetch(`/orders/AddItem?productId=${productId}`)
                     .then(response => {
                         if (response.status === 200) {

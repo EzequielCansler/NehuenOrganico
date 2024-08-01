@@ -191,8 +191,9 @@ namespace NehuenOrganico.Repositories
                     .Include(x => x.Items)
                     .ThenInclude(x => x.Product)
                     .Include(x => x.State)
-                    .Where(x => x.Id == user).ToList();
-
+                    .Where(x => x.Id == user)
+                    .OrderByDescending(x => x.CreateDate)
+                    .ToList();
             return order;
         }
 

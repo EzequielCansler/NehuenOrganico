@@ -29,6 +29,7 @@ namespace NehuenOrganico.Controllers
 
         public IActionResult AddItem(int productId, int qty = 1, int redirect = 0)
         {
+   
 
             var cartCount = _orderRepo.AddItem(productId, qty);
             if (redirect == 0)
@@ -39,8 +40,9 @@ namespace NehuenOrganico.Controllers
         {
            
             Order order = _orderRepo.GetPendingOrder();
-          
-            return View(order);
+            if(order != null)
+                return View(order);
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult RemoveItem(int id)
         {
@@ -64,9 +66,9 @@ namespace NehuenOrganico.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewOrder(int id, string shipping, string comments)
+        public IActionResult NewOrder(int orderId,string shipping, string comments)
         {
-            bool result = _orderService.CreateOrder(id, shipping, comments);
+            bool result = _orderService.CreateOrder(orderId, shipping, comments);
             if (!result)
                 throw new Exception("Error en el servidor");
             return RedirectToAction("Index", "Orders");

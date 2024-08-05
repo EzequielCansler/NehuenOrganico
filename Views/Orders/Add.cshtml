@@ -21,7 +21,8 @@
                             <h3 class="text-lg font-semibold">@item.Product.Name</h3>
                             <p class="text-primary font-semibold">
                                 $@String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:N2}", item.UnitPrice)
-                            </p>                       
+                            </p>
+                            <p>x @item.Quantity</p>
                             <a asp-action="RemoveItem" asp-route-id="@item.ProductId" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-green-50 hover:bg-white hover:text-accent-foreground hover:bg-white h-10 px-4 py-2 mt-2 w-full">
                                 Eliminar
                             </a>

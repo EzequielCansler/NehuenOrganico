@@ -27,8 +27,7 @@ namespace NehuenOrganico.Controllers
                 return Json(cartItem);
             }
             catch (Exception ex)
-            {
-                // Log the exception or handle it accordingly
+            {              
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }

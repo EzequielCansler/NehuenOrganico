@@ -52,9 +52,18 @@ namespace NehuenOrganico.Controllers
 
         public IActionResult GetUserCart()
         {
-            var cart = _orderRepo.GetUserCart();
-            return Json(cart);
+            try
+            {
+                var cart = _orderRepo.GetUserCart();
+                return Json(cart);
+            }
+            catch (Exception ex)
+            {
+                // Manejo del error y devolución de una respuesta adecuada
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
+
 
         [HttpGet]
         public IActionResult Index()
@@ -66,12 +75,20 @@ namespace NehuenOrganico.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewOrder(int orderId,string shipping, string comments)
+        public IActionResult NewOrder(int orderId, string shipping, string comments)
         {
-            bool result = _orderService.CreateOrder(orderId, shipping, comments);
-            if (!result)
-                throw new Exception("Error en el servidor");
-            return RedirectToAction("Index", "Orders");
+            try
+            {
+                bool result = _orderService.CreateOrder(orderId, shipping, comments);
+                if (!result)
+                    throw new Exception("Error en el servidor");
+                return RedirectToAction("Index", "Orders");
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error y devolver una respuesta adecuada
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]

@@ -133,16 +133,20 @@ namespace NehuenOrganico.Repositories
             var userId = GetUserId();
             if (userId == null)
             {
-                throw new Exception("No se encontro el usuario");
+                throw new Exception("No se encontró el usuario");
             }
-            Order order = _appDbContext.Order.FirstOrDefault(x => x.Id == userId);
 
+            var order = _appDbContext.Order.FirstOrDefault(x => x.Id == userId);
+            if (order == null)
+            {
+                throw new Exception("No se encontró la orden");
+            }
 
             return _appDbContext.OrderItem
                 .Where(item => item.OrderId == order.OrderId)
                 .ToList();
+        }
 
-        }// done
         public bool CreateOrder(int id, string shippingDetails, string comments, double total, DateTime date)
         {
             using var transaction = _appDbContext.Database.BeginTransaction();

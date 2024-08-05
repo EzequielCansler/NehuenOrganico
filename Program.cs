@@ -8,13 +8,16 @@ using NehuenOrganico.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+SQLitePCL.Batteries.Init();
+
 var connectionString = builder.Configuration.GetConnectionString("default");
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseSqlServer(connectionString));
+    options => options.UseSqlite(connectionString));
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(
     options =>

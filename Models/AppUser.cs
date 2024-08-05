@@ -7,13 +7,11 @@ namespace NehuenOrganico.Models
     public class AppUser:IdentityUser
     {
         [StringLength(100)]
-        [MaxLength(256)]
         [Required]
         public string? Name { get; set; }
         [StringLength(100)]
-        [MaxLength(256)]
         [Required]
-        public string Address { get; set; }
+        public string? Address { get; set; }
         
 
     }
